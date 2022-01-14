@@ -1,0 +1,35 @@
+@startuml
+left to right direction
+
+
+
+
+node "Mobile phone" as mobilePhone <<device>>{
+
+database data as dbMobilePhone
+artifact "Storage app" as app  <<artifact>>
+dbMobilePhone --o app : <<protocol>>
+
+}
+
+node "Memory stick" as memoryStick <<device>>{
+
+database data as dbMemoryStick
+
+}
+
+node "Webserver (provider)" as webserver <<device>>{
+
+database data as dbWebserver
+
+artifact "Website" as web  <<artifact>>
+
+dbWebserver--o web : <<SQL>>
+
+}
+
+
+memoryStick ----o app : <<protocol>>
+webserver <--right-> app : <<protocol>>
+
+@enduml

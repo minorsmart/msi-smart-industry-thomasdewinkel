@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>{% block title %} Welkom bij mijn meetstation data {% endblock %}</h1>
+
+
+
+{% endblock %}
+
+
+{% block table %} 
+
+{% for data in weatherdata %}
+    <tr>
+        <td>{{ data['ip'] }}</td>
+        <td>{{ data['temperature'] }}</td>
+        <td>{{ data['created'] }}</td>
+    </tr>
+
+   
+    {% endfor %}
+{% endblock %}
+
+

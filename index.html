@@ -1,0 +1,1075 @@
+<!-- Here, you are provided button 'Toggle' to hide & show content
+to help you understand how sticky footer with flex is working. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- meta adjustments -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Imported libraries using CDN -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+	<!-- CSS configuration for the document -->
+	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0px;
+		}
+
+
+		.main {
+
+			flex: 1 0 auto;
+			background-color: rgba(14, 17, 24, 0.97);
+		}
+
+
+		h1 {
+			color: white;
+		}
+
+		p {
+			background-color: #efece9;
+			border-radius: 4px;
+			padding-left: 8px;
+		}
+
+		.card {
+			border-radius: 12px;
+			-webkit-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			-moz-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+		}
+
+		body {
+			display: flex;
+			min-height: 100vh;
+			flex-direction: column;
+			background-color: rgba(14, 17, 24, 0.97);
+		}
+
+
+		.navbar-light {
+			background-color: rgba(14, 17, 24, 0.97);
+			padding-bottom: 2.0em;
+			color: wheat;
+		}
+
+
+
+		#title {
+			color: wheat;
+			font-size: 40px;
+			text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+
+		}
+
+		#competenties,
+		#smartstart,
+		#smartconnection,
+		#smarttechnology,
+		#smartbusiness,
+		#smartproject,
+		#wathebikgebracht,
+		#watwildeikhalen,
+		#waarbenikgekomen {
+			max-width: 18rem;
+		}
+
+		#smartstart,
+		#smartconnection,
+		#smarttechnology,
+		#smartbusiness,
+		#smartproject,
+		#wathebikgebracht,
+		#watwildeikhalen,
+		#waarbenikgekomen,
+		#wiebenik {
+			display: none;
+		}
+
+		#wiebenik {
+			max-width: 23rem;
+		}
+
+		#cardheader {
+			color: rgba(14, 17, 24, 0.97);
+			text-align: center;
+			font-size: 20px;
+			font-weight: 400;
+			text-shadow: 1px 1px 2px rgba(14, 17, 24, 0.97);
+		}
+
+		#cardbody {
+			color: rgba(14, 17, 24, 0.97);
+		}
+
+		#cardtext {
+			color: rgba(14, 17, 24, 0.97);
+		}
+
+		.card-header:first-child {
+			border-top-left-radius: 12px;
+			border-top-right-radius: 12px;
+			border-bottom: 1px solid floralwhite;
+			color: wheat;
+		}
+
+		.card-body {
+			min-height: 160px;
+
+		}
+
+		.card-footer {
+			padding-bottom: 0px;
+		}
+
+		#cardheaderhover {
+			display: none;
+			color: rgba(14, 17, 24, 0.97);
+			text-align: center;
+			font-size: 20px;
+			font-weight: 400;
+			text-shadow: 1px 1px 2px rgba(14, 17, 24, 0.97);
+			background-color: rgba(245, 244, 243, 0.897);
+
+			height: 100%;
+			border-radius: 12px;
+			-webkit-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			-moz-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+		}
+
+		#cardheadermadework {
+			display: none;
+			color: rgba(14, 17, 24, 0.97);
+			text-align: center;
+			font-size: 20px;
+			font-weight: 400;
+			text-shadow: 1px 1px 2px rgba(14, 17, 24, 0.97);
+			background-color: rgba(245, 244, 243, 0.897);
+
+			border-top-left-radius: 12px;
+			border-top-right-radius: 12px;
+
+			-webkit-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			-moz-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+		}
+
+		#cardbodymadework {
+			display: none;
+			color: rgba(14, 17, 24, 0.97);
+			font-size: 20px;
+			font-weight: 400;
+			text-shadow: 1px 1px 2px rgba(14, 17, 24, 0.97);
+
+			-webkit-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			-moz-box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+			box-shadow: 0px 0px 12px 0px rgba(255, 255, 255, 0.5);
+		}
+
+		#mybtn {
+			background-color: #efece9;
+			border-color: rgba(14, 17, 24, 0.97);
+			color: rgba(14, 17, 24, 0.97);
+			box-shadow: 0px 0px 12px 0px rgba(14, 17, 24, 0.97);
+			width: 100%;
+			margin-bottom: 1em;
+
+		}
+
+		#mybtn:hover {
+			background-color: dimgrey;
+		}
+
+		#imageself {
+			border-radius: 12px;
+			-webkit-box-shadow: 0px 0px 12px 0px rgba(14, 17, 24, 0.97);
+			-moz-box-shadow: 0px 0px 12px 0px rgba(14, 17, 24, 0.97);
+			box-shadow: 0px 0px 12px 0px rgba(14, 17, 24, 0.97);
+		}
+
+		footer {
+			flex-shrink: none;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Navbar -->
+	<nav id="mynavbar" class="navbar navbar-light justify-content-center">
+		<span id="title" class="navbar-brand mb-0 h1">Portfolio dashboard</span>
+	</nav>
+
+	<!-- Body Content -->
+
+	<div id="mycontainer" class="container-fluid main">
+		<div class="row">
+			<!-- Navigation/Other Links -->
+			<div class="col-sm-2">
+				<div class="container">
+					<div class="card w-100">
+						<div class="card-body">
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('competenties')">Competenties</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('smartstart')">Smart
+								start</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('smartconnection')">Smart
+								connection</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('smarttechnology')">Smart technology</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('smartbusiness')">Smart business</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('smartproject')">Smart project</a>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Content Panel -->
+			<div class="col-sm-8">
+
+				<div class="container">
+					<div class="row mt-5 justify-content-center">
+
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">1 - Herkennen / Analyseren / Diagnosticeren</div>
+							<div class="card-header" id="cardheaderhover">De student is in staat een vraagstuk op het
+								gebied
+								van Smart Industry te signaleren, te beschrijven, te analyseren en te beoordelen op
+								wenselijkheid en haalbaarheid.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De student is in staat een vraagstuk op het gebied
+									van Smart Industry te signaleren, te beschrijven, te analyseren en te beoordelen op
+									wenselijkheid en haalbaarheid.</p>
+							</div>
+
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">2 - Innoveren / Ontwerpen</div>
+							<div class="card-header" id="cardheaderhover">De student is in staat vernieuwende ideeen te
+								ontwikkelen en deze te vertalen naar concepten voor processen, producten of
+								diensten.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De student is in staat vernieuwende ideeen te
+									ontwikkelen en deze te vertalen naar concepten voor processen, producten of
+									diensten.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">3 - Projectmanagement</div>
+							<div class="card-header" id="cardheaderhover">De student is in staat in een
+								multidisciplinaire
+								omgeving methoden en technieken op het gebied van projectmanagement te selecteren en
+								toe te passen op een Smart Industry vraagstuk.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De student is in staat in een multidisciplinaire
+									omgeving methoden en technieken op het gebied van projectmanagement te selecteren en
+									toe te passen op een Smart Industry vraagstuk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">4 - Onderzoeken</div>
+							<div class="card-header" id="cardheaderhover">De student is in staat in een
+								multidisciplinaire
+								omgeving methoden en technieken op het gebied van onderzoek te selecteren en toe te
+								passen op een Smart Industry vraagstuk.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De student is in staat in een multidisciplinaire
+									omgeving methoden en technieken op het gebied van onderzoek te selecteren en toe te
+									passen op een Smart Industry vraagstuk.</p>
+							</div>
+						</div>
+
+
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">5 - Communiceren / Adviseren</div>
+							<div class="card-header" id="cardheaderhover">De student kan, zowel in het Nederlands als
+								het
+								Engels, ideeen, meningen, standpunten en besluiten correct, begrijpelijk en
+								overtuigend overbrengen met behulp van verschillende communicatiekanalen.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De student kan, zowel in het Nederlands als het
+									Engels, ideeen, meningen, standpunten en besluiten correct, begrijpelijk en
+									overtuigend overbrengen met behulp van verschillende communicatiekanalen.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">6 - Samenwerken / Netwerken</div>
+							<div class="card-header" id="cardheaderhover">De student kan relaties en allianties binnen
+								en buiten de eigen organisatie ontwikkelen en bestendigen en deze benutten voor het
+								verkrijgen van informatie, steun en medewerking.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De student kan relaties en allianties binnen en
+									buiten de eigen organisatie ontwikkelen en bestendigen en deze benutten voor het
+									verkrijgen van informatie, steun en medewerking.</p>
+							</div>
+						</div>
+						
+						<div class="card card-custom mx-2 mb-3" id="competenties">
+							<div class="card-header" id="cardheader">7 - Professionaliseren / Verantwoord handelen</div>
+							<div class="card-header" id="cardheaderhover">De startende professional is in staat via de
+								weg van
+								reflectie zich professioneel te blijven ontwikkelen en een bijdrage te leveren aan
+								de ontwikkeling van de organisatie en de beroepspraktijk door opgedane kennis te
+								borgen, over te dragen en te verspreiden. Hierbij is de professional zich bewust van
+								Smart Industry context waarin hij opereert en past zijn gedrag en/of zijn adviezen
+								hierop aan.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De startende professional is in staat via de weg van
+									reflectie zich professioneel te blijven ontwikkelen en een bijdrage te leveren aan
+									de ontwikkeling van de organisatie en de beroepspraktijk door opgedane kennis te
+									borgen, over te dragen en te verspreiden. Hierbij is de professional zich bewust van
+									Smart Industry context waarin hij opereert en past zijn gedrag en/of zijn adviezen
+									hierop aan.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartstart">
+							<div class="card-header" id="cardheader">C1 - Smart start onderzoek</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Uitbundig onderzoek gedaan waarbij toegespitst is op smart industry.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartstart">
+							<div class="card-header" id="cardheader">C2 - Voorwerk</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Alvorens deze minor al enig onderzoek gedaan naar
+									probleemstukken en daarvoor vernieuwende ideeen uitgewerkt.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartconnection">
+							<div class="card-header" id="cardheader">C2 - Inzichtelijk maken immunsysteem</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Een oplossing ontworpen voor een
+									probleem uit mijn voorwerk. </p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smarttechnology">
+							<div class="card-header" id="cardheader">C2 - Lesopdrachten smart technology</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens de lessen gewerkt aan de verschillende iot
+									technieken.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smarttechnology">
+							<div class="card-header" id="cardheader">C2 - 3D doosje</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens een workshop gewerkt aan het maken van een 3D
+									doosje.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smarttechnology">
+							<div class="card-header" id="cardheader">C2 - Eindstation</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De technieken geleerd bij smart technology toegepast
+									in een eindopdracht.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartconnection">
+							<div class="card-header" id="cardheader">C2 - Klassikale website</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">De portfolio website die wij als klas moesten maken.
+								</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartconnection">
+							<div class="card-header" id="cardheader">C2 - Portfolio dashboard</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Mijn eigen portfolio dashboard.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+
+						<div class="card card-custom mx-2 mb-3" id="smartbusiness">
+							<div class="card-header" id="cardheader">C5 - Project AXA</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens een workshop een verandertraject geschreven
+									voor AXA.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartbusiness">
+							<div class="card-header" id="cardheader">C5 - Visie verandering</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens de les geschreven wat mijn visie is t.o.v.
+									verandering en gekeken naar hoe je verandering kan toepassen bij bedrijven.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C3 - Rollen</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Beschreven wat mijn rollen tijdens het project waren en daarop gereflecteerd.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C4 - Project rapport</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens het project gewerkt aan een onderzoeks/advies rapport.
+								</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C4 - Plan van aanpak</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens het project hadden wij als groep een plan van
+									aanpak gemaakt waarin de opdracht is afgestemd met de opdrachtgever.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartstart">
+							<div class="card-header" id="cardheader">C4 - Onderzoeksmethodes</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens de lessen van smart start verschillende onderzoeksmethodes/technieken bekeken.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartstart">
+							<div class="card-header" id="cardheader">C5 - Gesprek met Ilke Oner</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Vragen gesteld aan Ilke Oner t.a.v. mijn onderzoek
+									van smart start.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C5 - Contacten met Pieter Bergshoeff</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Contact gehouden met Pieter Bergshoeff om de
+									voortgang van het project te mededelen.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C5 - Contacten met stakeholders</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Meerdere gesprekken gevoerd met stakeholders om tot
+									nieuwe inzichten te komen.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C5 - Communicatie technieken</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Gereflecteerd op de verschillende manieren van communiceren binnen ons project.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C6 - Samenwerken</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Gereflecteerd op de manier van hoe wij als team binnen het project hebben samengewerkt.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C7 - Smart journey</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Voortgang bijgehouden van het eerste gedeelte van de minor en gereflecteerd
+									op processen/opdrachten.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C7 - Smart project</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Voortgang bijgehouden van het tweede gedeelte van de minor en gereflecteerd
+									op processen van het project en de 3D lessen.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="smartproject">
+							<div class="card-header" id="cardheader">C7 - Smart me</div>
+							<div class="card-header" id="cardheadermadework">Gemaakt werk</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tussentijds gereflecteerd op de stand van zaken met betrekking tot mijn doelen.</p>
+							</div>
+							<div class="card-body text-secondary" id="cardbodymadework">
+
+								<p class="card-text" id="cardtext">Dit is de link naar mijn gemaakt werk.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="wiebenik">
+							<div class="card-header" id="cardheader">Thomas de Winkel</div>
+							<div class="card-body text-secondary" id="cardbody">
+								<img src="images/Thomas.jpeg" id="imageself" alt="image"
+									style="width:326px;height:435px;">
+
+							</div>
+
+							<div class="card-header" id="cardheader">Hard skills</div>
+							<div class="card-body text-secondary" id="cardbody">
+								<p class="card-text" id="cardtext">
+								<ul>
+									<li>C</li>
+									<li>C++</li>
+									<li>Python</li>
+									<li>UML</li>
+									<li>Github</li>
+								</ul>
+								</p>
+
+							</div>
+
+							<div class="card-header" id="cardheader">Soft skills</div>
+							<div class="card-body text-secondary" id="cardbody">
+								<p class="card-text" id="cardtext">
+								<ul>
+									<li>Optimistisch</li>
+									<li>Oplossingsgericht werken</li>
+									<li>Samenwerken</li>
+								</ul>
+								</p>
+							</div>
+
+							<div class="card-header" id="cardheader">Slogan</div>
+							<div class="card-body text-secondary" id="cardbody">
+								<p class="card-text" id="cardtext">
+								Ik ben beter in het het oplossen van het probleem dan in het programmeren van de oplossing.
+								</p>
+							</div>
+
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="wathebikgebracht">
+							<div class="card-header" id="cardheader">Programmeerkennis</div>
+							<div class="card-header" id="cardheaderhover">Tijdens deze minor heb ik programmeerkennis
+								gebracht aan medestudenten.
+								Daarvoor heb ik pair-programming ingezet.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens deze minor heb ik programmeerkennis gebracht
+									aan medestudenten.
+									Daarvoor heb ik pair-programming ingezet.</p>
+							</div>
+						</div>
+						<div class="card card-custom mx-2 mb-3" id="wathebikgebracht">
+							<div class="card-header" id="cardheader">Github</div>
+							<div class="card-header" id="cardheaderhover">Tijdens deze minor heb ik in de eerste weken
+								een presentatie over Github gegeven aan medestudenten.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Tijdens deze minor heb ik in de eerste weken een
+									presentatie over Github gegeven aan medestudenten.</p>
+							</div>
+						</div>
+
+
+						<div class="card card-custom mx-2 mb-3" id="watwildeikhalen">
+							<div class="card-header" id="cardheader">Balans</div>
+							<div class="card-header" id="cardheaderhover">Ik wilde de balans vinden tussen het
+								technische aspect (het programmeren) van IT en de business kant.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Ik wilde de balans vinden tussen het technische
+									aspect (het programmeren) van IT en de business kant.</p>
+							</div>
+						</div>
+						<div class="card card-custom mx-2 mb-3" id="watwildeikhalen">
+							<div class="card-header" id="cardheader">Beperkte kennis</div>
+							<div class="card-header" id="cardheaderhover">Ik wilde leren hoe je met een technisch
+								probleem omgaat waarvan je het antwoord niet weet (ook als je tegen beperkte kennis
+								aanloopt).</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Ik willde leren hoe je met een technisch probleem
+									omgaat waarvan je het antwoord niet weet (ook als je tegen beperkte kennis
+									aanloopt).</p>
+							</div>
+						</div>
+						<div class="card card-custom mx-2 mb-3" id="watwildeikhalen">
+							<div class="card-header" id="cardheader">Probleem koppelen aan business case</div>
+							<div class="card-header" id="cardheaderhover">Ik wilde leren om een technisch probleem te
+								koppelen aan een business case, dus hoe benader je dat vanuit een business oogpunt.
+							</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Ik wilde leren om een technisch probleem te koppelen
+									aan een business case, dus hoe benader je dat vanuit een business oogpunt.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">Balans helaas niet gevonden</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Ik heb de balans tussen het technische aspect (het programmeren) van IT en de business
+								kant helaas niet gevonden, omdat je als programmeur automatisch werd gekoppeld aan de
+								programmeertaken.
+							</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Ik heb de balans tussen het technische aspect (het
+									programmeren) van IT en de business kant helaas niet gevonden, omdat je als
+									programmeur automatisch werd gekoppeld aan de programmeertaken.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">1e keuze onderzoek</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Wegens gebrek aan tijd heb ik helaas mijn eerste onderzoekskeuze niet kunnen uitvoeren.
+								Daar is een alternatief voor gekomen.
+							</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext">Wegens gebrek aan tijd heb ik helaas mijn eerste
+									onderzoekskeuze niet kunnen uitvoeren. Daar is een alternatief voor gekomen.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">Mijn ideale minor traject</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Mijn eigen minor-traject wat ik van te voren had gedacht (zoveel mogelijk werken aan de
+								technische problemen) heb ik niet goed kunnen uitvoeren vanwege de overige opdrachten.
+							</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext"> Mijn eigen minor-traject wat ik van te voren had
+									gedacht (zoveel mogelijk werken aan de technische problemen) heb ik niet goed kunnen
+									uitvoeren vanwege de overige opdrachten.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">Design thinking</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Design thinking vond ik ontzettend leuk aan de minor. Dit heb ik ook toegepast bij het
+								project. Daar heb ik ook de gevaren van gezien. </div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext"> Design thinking vond ik ontzettend leuk aan de
+									minor. Dit heb ik ook toegepast bij het project. Daar heb ik ook de risico's van
+									gezien.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">Smart technology</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Mijn eindopdracht van smart technology werkt ontzettend goed. Hij is bruikbaar buiten de
+								minor. </div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext"> Mijn eindopdracht van smart technology werkt
+									ontzettend goed. Hij is bruikbaar buiten de minor.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">Monopoly meterkast</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Tijdens het project ben ik tot de ontdekking gekomen dat een netbeheerder een monopoly positie heeft tot aan de meter. Dit bemoeilijkt verandering.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext"> Tijdens het project ben ik tot de ontdekking gekomen dat een netbeheerder een monopoly positie heeft tot aan de meter. Dit bemoeilijkt verandering.</p>
+							</div>
+						</div>
+
+						<div class="card card-custom mx-2 mb-3" id="waarbenikgekomen">
+							<div class="card-header" id="cardheader">Te veel thuiswerken</div>
+							<div class="card-header" id="cardheaderhover">
+
+								Tijdens de minor moesten wij nog best veel thuiswerken. Naar mijn mening is dit niet heel wenselijk om een gelijkwaardig niveau als klas neer te zetten.</div>
+							<div class="card-body text-secondary" id="cardbody">
+
+								<p class="card-text" id="cardtext"> Tijdens de minor moesten wij nog best veel thuiswerken. Naar mijn mening is dit niet heel wenselijk om een gelijkwaardig niveau als klas neer te zetten.</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Advertisement -->
+			<div class="col-sm-2">
+				<div class="container">
+					<div class="card w-100">
+						<div class="card-body">
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('wiebenik')">Wie ben ik?</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('wathebikgebracht')">Wat heb ik gebracht?</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('watwildeikhalen')">Wat wilde ik halen?</a>
+							<a class="btn btn-primary" id="mybtn" href="#" role="button"
+								onclick="displayFn('waarbenikgekomen')">Waar ben ik gekomen?</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br>
+
+
+
+	<!-- jQuery implementation for showing and hiding Content -->
+	<script>
+
+		//var competentiecards = document.getElementsByClassName("card");
+
+		var competentiecards = document.querySelectorAll("div.card");
+
+
+		var articleFirst = document.querySelectorAll("div.card #cardheader");
+		console.log(competentiecards)
+
+		for (let i = 0; i < competentiecards.length; i++) {
+
+			competentiecards[i].onmouseover = function () {
+
+				if (competentiecards[i].id == "competenties" || competentiecards[i].id == "wathebikgebracht" || competentiecards[i].id == "watwildeikhalen" || competentiecards[i].id == "waarbenikgekomen") {
+
+					var x = competentiecards[i].querySelector("#cardheader");
+					x.style.display = "none";
+					var y = competentiecards[i].querySelector("#cardheaderhover");
+					y.style.display = "block";
+					var z = competentiecards[i].querySelector("#cardbody");
+					z.style.display = "none";
+				}
+
+				if (competentiecards[i].id == "smartstart" || competentiecards[i].id == "smartconnection" || competentiecards[i].id == "smarttechnology" || competentiecards[i].id == "smartbusiness" || competentiecards[i].id == "smartproject") {
+					var x = competentiecards[i].querySelector("#cardheader");
+					x.style.display = "none";
+					var y = competentiecards[i].querySelector("#cardheadermadework");
+					y.style.display = "block";
+					var z = competentiecards[i].querySelector("#cardbody");
+					z.style.display = "none";
+					var z = competentiecards[i].querySelector("#cardbodymadework");
+					z.style.display = "block";
+				}
+
+			};
+			competentiecards[i].onmouseout = function () {
+				if (competentiecards[i].id == "competenties" || competentiecards[i].id == "wathebikgebracht" || competentiecards[i].id == "watwildeikhalen" || competentiecards[i].id == "waarbenikgekomen") {
+					var x = competentiecards[i].querySelector("#cardheader");
+					x.style.display = "block";
+					var y = competentiecards[i].querySelector("#cardheaderhover");
+					y.style.display = "none";
+					var z = competentiecards[i].querySelector("#cardbody");
+					z.style.display = "block";
+				}
+				if (competentiecards[i].id == "smartstart" || competentiecards[i].id == "smartconnection" || competentiecards[i].id == "smarttechnology" || competentiecards[i].id == "smartbusiness" || competentiecards[i].id == "smartproject") {
+					var y = competentiecards[i].querySelector("#cardheadermadework");
+					y.style.display = "none";
+					var x = competentiecards[i].querySelector("#cardheader");
+					x.style.display = "block";
+					var z = competentiecards[i].querySelector("#cardbodymadework");
+					z.style.display = "none";
+					var z = competentiecards[i].querySelector("#cardbody");
+					z.style.display = "block";
+
+
+
+				}
+			};
+
+		}
+
+
+
+
+
+		function displayFn(subject) {
+
+			var cards = document.getElementsByClassName("card");
+			console.log(cards);
+			var index = 1;
+
+			for (var item of cards) {
+				if (item.id == "competenties" || item.id == "smartstart" || item.id == "smartconnection" ||
+					item.id == "smarttechnology" || item.id == "smartbusiness" || item.id == "smartproject" || item.id == "wiebenik" ||
+					item.id == "wathebikgebracht" || item.id == "watwildeikhalen" || item.id == "waarbenikgekomen") {
+					item.style.display = "none";
+				}
+			}
+
+			if (subject == "competenties") {
+
+				for (var item of cards) {
+					if (item.id == "competenties") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "smartstart") {
+
+				for (var item of cards) {
+					if (item.id == "smartstart") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "smartconnection") {
+
+				for (var item of cards) {
+					if (item.id == "smartconnection") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "smarttechnology") {
+
+				for (var item of cards) {
+					if (item.id == "smarttechnology") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "smartbusiness") {
+
+				for (var item of cards) {
+					if (item.id == "smartbusiness") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "smartproject") {
+
+				for (var item of cards) {
+					if (item.id == "smartproject") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "wiebenik") {
+				for (var item of cards) {
+					if (item.id == "wiebenik") {
+						task(index, item);
+						index++;
+					}
+				}
+			}
+
+			if (subject == "wathebikgebracht") {
+				for (var item of cards) {
+					if (item.id == "wathebikgebracht") {
+						task(index, item);
+						index++;
+					}
+
+				}
+			}
+
+			if (subject == "watwildeikhalen") {
+				for (var item of cards) {
+					if (item.id == "watwildeikhalen") {
+						task(index, item);
+						index++;
+					}
+
+				}
+			}
+
+			if (subject == "waarbenikgekomen") {
+				for (var item of cards) {
+					if (item.id == "waarbenikgekomen") {
+						task(index, item);
+						index++;
+					}
+
+				}
+			}
+
+		}
+
+		function task(index, item) {
+			setTimeout(function () {
+				item.style.display = "block";
+			}, 100 * index);
+		}
+
+	</script>
+
+
+</body>
+
+</html>
